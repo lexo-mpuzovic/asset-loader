@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/lexo-mpuzovic/asset-loader/compare/v1.1.0...v2.0.0) (2021-08-29)
+
+
+### Features
+
+* **code:** Adapted for PSR12 ([ca3b1f5](https://github.com/lexo-mpuzovic/asset-loader/commit/ca3b1f58cc2f54b1fbc6c436b381c5392bc4b953))
+
+
+### BREAKING CHANGES
+
+* **code:** Adapted for Laravel Mix
+
 # [1.1.0](https://github.com/oblakstudio/asset-loader/compare/v1.0.1...v1.1.0) (2021-06-28)
 
 

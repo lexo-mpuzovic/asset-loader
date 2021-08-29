@@ -1,6 +1,6 @@
 {
     "name": "tronyx/asset-loader",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Simple Asset Loader for WordPress, adapted for Laravel Mix",
     "type": "library",
     "autoload": {
