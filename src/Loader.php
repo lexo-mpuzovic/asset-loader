@@ -1,6 +1,8 @@
 <?php
 
-namespace Oblak\Asset;
+namespace Tronyx\Asset;
+
+use Tronyx\Asset\Manifest;
 
 class Loader implements LoaderInterface
 {
@@ -20,12 +22,11 @@ class Loader implements LoaderInterface
         self::$context = ( !is_admin() ) ? 'front' : 'admin';
 
         $this->namespaces = [];
-        
-        add_action(self::$hook, [$this, 'run'], -1);
 
+        add_action(self::$hook, [$this, 'run'], -1);
     }
 
-    public static function getInstance() : Loader
+    public static function getInstance(): Loader
     {
         return (self::$instance === null)
             ? self::$instance = new Loader()
@@ -37,98 +38,105 @@ class Loader implements LoaderInterface
 
         $this->namespaces[$namespace] = [
             'assets'   => $data['assets'],
-            'version'  => $data['version']  ?? '1.0.0',
             'priority' => $data['priority'] ?? 50,
             'manifest' => new Manifest(
-                $data['dist_path'].'/assets.json',
+                $data['dist_path'] . '/mix-manifest.json',
                 $data['dist_uri'],
                 $data['dist_path']
             ),
         ];
-
-
     }
 
     public function run()
     {
 
         foreach ($this->namespaces as $namespace => $data) :
-
-            add_action(self::$hook, function() use ($namespace, $data) {
+            add_action(self::$hook, function () use ($namespace, $data) {
 
                 $this->loadStyles(
                     $namespace,
                     $data['manifest'],
-                    $data['assets'][self::$context]['styles'],
-                    $data['version']
+                    $data['assets'][self::$context]['styles']
                 );
 
                 $this->loadScripts(
                     $namespace,
                     $data['manifest'],
-                    $data['assets'][self::$context]['scripts'],
-                    $data['version']
+                    $data['assets'][self::$context]['scripts']
                 );
-
-
             }, $data['priority']);
-
         endforeach;
     }
 
-    public function loadStyles(string $namespace, Manifest $manifest, array $assets, string $version)
+    public function loadStyles(string $namespace, Manifest $manifest, array $assets)
     {
 
         $load_styles = apply_filters("{$namespace}/load_styles", true);
 
-        if (!$load_styles)
+        if (!$load_styles) {
             return;
+        }
 
         foreach ($assets as $style) :
-
             $basename = basename($style);
             $handler  = "{$namespace}/{$basename}";
 
-            if ( !apply_filters("{$namespace}/enqueue/{$basename}", true) ) continue;
+            if (!apply_filters("{$namespace}/enqueue/{$basename}", true)) {
+                continue;
+            }
 
-            wp_register_style($handler, $manifest->getUri($style), [], $version);
+            wp_register_style(
+                $handler,
+                $manifest->getUri($style),
+                [],
+                $this->getVersionFromManifest($manifest, $style)
+            );
             wp_enqueue_style($handler);
-
         endforeach;
-
     }
 
-    public function loadScripts(string $namespace, Manifest $manifest, array $assets, string $version)
+    public function loadScripts(string $namespace, Manifest $manifest, array $assets)
     {
 
         $load_scripts = apply_filters("{$namespace}/load_scripts", true);
 
-        if (!$load_scripts)
+        if (!$load_scripts) {
             return;
+        }
 
         foreach ($assets as $script) :
-
             $basename = basename($script);
             $handler  = "{$namespace}/{$basename}";
 
-            if ( !apply_filters("{$namespace}/enqueue/{$basename}", true) ) continue;
+            if (!apply_filters("{$namespace}/enqueue/{$basename}", true)) {
+                continue;
+            }
 
-            wp_register_script($handler, $manifest->getUri($script), [], $version, true);
+            wp_register_script(
+                $handler,
+                $manifest->getUri($script),
+                [],
+                $this->getVersionFromManifest($manifest, $script),
+                true
+            );
+
             do_action("{$namespace}/localize/$basename");
             wp_enqueue_script($handler);
-
         endforeach;
-
     }
 
-    public function getUri(string $namespace, string $asset) : string
+    public function getUri(string $namespace, string $asset): string
     {
         return $this->namespaces[$namespace]['manifest']->getUri($asset);
     }
 
-    public function getPath(string $namespace, string $asset) : string
+    public function getPath(string $namespace, string $asset): string
     {
         return $this->namespaces[$namespace]['manifest']->getPath($asset);
     }
 
+    public function getVersionFromManifest(Manifest $manifest, string $file): string
+    {
+        return explode('?id=', $manifest->manifest["/{$file}"])[1] ?? 'generic-1.0.0';
+    }
 }

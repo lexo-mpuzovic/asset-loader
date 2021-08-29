@@ -1,2 +1,3 @@
-.github export-ignore
-build export-ignore
+# Asset Loader
+
+Asset Loader adapted for Laravel Mix.

@@ -1,14 +1,23 @@
 {
-    "name": "oblak/asset-loader",
-    "description": "Simple Asset Loader for WordPress",
-    "license": "GPL-2.0-only",
+    "name": "tronyx/asset-loader",
     "version": "1.1.0",
+    "description": "Simple Asset Loader for WordPress, adapted for Laravel Mix",
+    "type": "library",
     "autoload": {
         "psr-4": {
-            "Oblak\\Asset\\": "src/"
+            "Tronyx\\Asset\\": "src/"
         }
     },
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Miljan Puzović",
+            "email": "tronyx85@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
     "require": {
-        "oblak/asset-manifest": "^1.0"
+        "php": ">=7.2.0",
+        "tronyx/asset-manifest": "^1.0"
     }
 }

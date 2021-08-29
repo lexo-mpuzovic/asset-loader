@@ -4,29 +4,29 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fca8ad024ec112f8c7be991de1fba54f",
+    "content-hash": "db2ae996fd5a0c01ae4d9b907b952946",
     "packages": [
         {
-            "name": "oblak/asset-manifest",
-            "version": "1.0.0",
+            "name": "tronyx/asset-manifest",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/oblakstudio/asset-manifest.git",
-                "reference": "1b60643212d6b6794f1020c07f5c627c029df15e"
+                "url": "https://github.com/lexo-mpuzovic/asset-manifest.git",
+                "reference": "dfb27ec2697861afdd298f330d00cb6990a533ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oblakstudio/asset-manifest/zipball/1b60643212d6b6794f1020c07f5c627c029df15e",
-                "reference": "1b60643212d6b6794f1020c07f5c627c029df15e",
+                "url": "https://api.github.com/repos/lexo-mpuzovic/asset-manifest/zipball/dfb27ec2697861afdd298f330d00cb6990a533ea",
+                "reference": "dfb27ec2697861afdd298f330d00cb6990a533ea",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4"
+                "php": ">=7.2.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Oblak\\Asset\\": "src/"
+                    "Tronyx\\Asset\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -35,16 +35,15 @@
             ],
             "authors": [
                 {
-                    "name": "Sibin Grasic",
-                    "email": "sibin.grasic@oblak.studio"
+                    "name": "Miljan Puzovic",
+                    "email": "tronyx85@gmail.com"
                 }
             ],
             "description": "Asset Manifest handler",
             "support": {
-                "issues": "https://github.com/oblakstudio/asset-manifest/issues",
-                "source": "https://github.com/oblakstudio/asset-manifest/tree/v1.0.0"
+                "source": "https://github.com/lexo-mpuzovic/asset-manifest/tree/v1.1.0"
             },
-            "time": "2021-04-20T12:17:24+00:00"
+            "time": "2021-08-29T15:10:07+00:00"
         }
     ],
     "packages-dev": [],
@@ -53,7 +52,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.2.0"
+    },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
