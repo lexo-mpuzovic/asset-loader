@@ -6,7 +6,6 @@ use Tronyx\Asset\Manifest;
 
 class Loader implements LoaderInterface
 {
-
     private static ?string $hook = null;
 
     private static ?string $context = null;
@@ -17,13 +16,16 @@ class Loader implements LoaderInterface
 
     public function __construct()
     {
-
         self::$hook    = ( !is_admin() )  ? 'wp_enqueue_scripts' : 'admin_enqueue_scripts';
         self::$context = ( !is_admin() ) ? 'front' : 'admin';
 
         $this->namespaces = [];
 
         add_action(self::$hook, [$this, 'run'], -1);
+
+        if (self::$context === 'admin') {
+            add_action('admin_init', [$this, 'runEditor']);
+        }
     }
 
     public static function getInstance(): Loader
@@ -35,7 +37,6 @@ class Loader implements LoaderInterface
 
     public function registerNamespace(string $namespace, array $data)
     {
-
         $this->namespaces[$namespace] = [
             'assets'   => $data['assets'],
             'priority' => $data['priority'] ?? 50,
@@ -49,7 +50,6 @@ class Loader implements LoaderInterface
 
     public function run()
     {
-
         foreach ($this->namespaces as $namespace => $data) :
             add_action(self::$hook, function () use ($namespace, $data) {
 
@@ -68,9 +68,22 @@ class Loader implements LoaderInterface
         endforeach;
     }
 
+    public function runEditor()
+    {
+        foreach ($this->namespaces as $namespace => $data) :
+            add_action('admin_init', function () use ($namespace, $data) {
+
+                $this->loadEditorStyles(
+                    $namespace,
+                    $data['manifest'],
+                    $data['assets']['editor']['styles']
+                );
+            }, $data['priority']);
+        endforeach;
+    }
+
     public function loadStyles(string $namespace, Manifest $manifest, array $assets)
     {
-
         $load_styles = apply_filters("{$namespace}/load_styles", true);
 
         if (!$load_styles) {
@@ -97,7 +110,6 @@ class Loader implements LoaderInterface
 
     public function loadScripts(string $namespace, Manifest $manifest, array $assets)
     {
-
         $load_scripts = apply_filters("{$namespace}/load_scripts", true);
 
         if (!$load_scripts) {
@@ -123,6 +135,31 @@ class Loader implements LoaderInterface
             do_action("{$namespace}/localize/$basename");
             wp_enqueue_script($handler);
         endforeach;
+    }
+
+    public function loadEditorStyles(string $namespace, Manifest $manifest, array $assets)
+    {
+        $load_editor_styles = apply_filters("{$namespace}/load_editor_styles", true);
+
+        if (!$load_editor_styles) {
+            return;
+        }
+
+        $editor_styles = [];
+
+        foreach ($assets as $style) :
+            $basename = basename($style);
+
+            if (!apply_filters("{$namespace}/add_editor_style/{$basename}", true)) {
+                continue;
+            }
+
+            $editor_styles[] = $manifest->getUri($style)
+                                . '?manifest-ver='
+                                . $this->getVersionFromManifest($manifest, $style);
+        endforeach;
+
+        add_editor_style($editor_styles);
     }
 
     public function getUri(string $namespace, string $asset): string

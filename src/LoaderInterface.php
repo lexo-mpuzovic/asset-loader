@@ -11,6 +11,8 @@ interface LoaderInterface
 
     public function loadScripts(string $namespace, Manifest $manifest, array $assets);
 
+    public function loadEditorStyles(string $namespace, Manifest $manifest, array $assets);
+
     /**
      * Get the cache-busted URI
      *
