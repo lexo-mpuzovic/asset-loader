@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/lexo-mpuzovic/asset-loader/compare/v2.0.0...v2.1.0) (2021-08-31)
+
+
+### Features
+
+* **core:** Added an option to load editor styles ([0d44efc](https://github.com/lexo-mpuzovic/asset-loader/commit/0d44efc94d276eabb3188e7413f96fa3b22b2c88))
+
 # [2.0.0](https://github.com/lexo-mpuzovic/asset-loader/compare/v1.1.0...v2.0.0) (2021-08-29)
 
 
