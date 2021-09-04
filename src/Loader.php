@@ -71,14 +71,16 @@ class Loader implements LoaderInterface
     public function runEditor()
     {
         foreach ($this->namespaces as $namespace => $data) :
-            add_action('admin_init', function () use ($namespace, $data) {
+            if (!empty($data['assets']['editor']['styles'])) :
+                add_action('admin_init', function () use ($namespace, $data) {
 
-                $this->loadEditorStyles(
-                    $namespace,
-                    $data['manifest'],
-                    $data['assets']['editor']['styles']
-                );
-            }, $data['priority']);
+                    $this->loadEditorStyles(
+                        $namespace,
+                        $data['manifest'],
+                        $data['assets']['editor']['styles']
+                    );
+                }, $data['priority']);
+            endif;
         endforeach;
     }
 
