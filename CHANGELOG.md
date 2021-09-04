@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/lexo-mpuzovic/asset-loader/compare/v2.1.0...v2.1.1) (2021-09-04)
+
+
+### Bug Fixes
+
+* **core:** Made editor styles optional ([3d2645a](https://github.com/lexo-mpuzovic/asset-loader/commit/3d2645a47ad3d3ce9b2b212227bd18a54077f339))
+
 # [2.1.0](https://github.com/lexo-mpuzovic/asset-loader/compare/v2.0.0...v2.1.0) (2021-08-31)
 
 
