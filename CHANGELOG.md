@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/lexo-mpuzovic/asset-loader/compare/v2.1.1...v2.1.2) (2022-06-17)
+
+
+### Bug Fixes
+
+* **core:** Load scripts ASAP (use defer later on) ([6c4cec2](https://github.com/lexo-mpuzovic/asset-loader/commit/6c4cec29a2cdfd2d3ddaf4067b1262a08639afab))
+
 ## [2.1.1](https://github.com/lexo-mpuzovic/asset-loader/compare/v2.1.0...v2.1.1) (2021-09-04)
 
 
