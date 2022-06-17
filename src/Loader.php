@@ -131,7 +131,7 @@ class Loader implements LoaderInterface
                 $manifest->getUri($script),
                 [],
                 $this->getVersionFromManifest($manifest, $script),
-                true
+                false
             );
 
             do_action("{$namespace}/localize/$basename");
