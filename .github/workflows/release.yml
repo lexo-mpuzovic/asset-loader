@@ -10,23 +10,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
-      - name: Install composer dependencies
-        uses: php-actions/composer@v5
+          node-version: 18
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: /tmp/composer-cache
+          key: assetloader
+      - name: Install Composer dependencies
+        uses: php-actions/composer@v6
         with:
           php_version: 7.4
           version: 2
           dev: no
-      - name: Install Yarn dependencies
-        run: yarn install
-      - name: Release
+          args: --no-dev --no-scripts
+      - name: Install NPM dependencies
+        run: npm ci
+      - name: Zip files and make a release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
 
