@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db2ae996fd5a0c01ae4d9b907b952946",
+    "content-hash": "2bf7234e91dcdc08437bd13c37c25455",
     "packages": [
         {
             "name": "tronyx/asset-manifest",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lexo-mpuzovic/asset-manifest.git",
-                "reference": "dfb27ec2697861afdd298f330d00cb6990a533ea"
+                "reference": "0164d5e2f0cfc6288a01e9d196741d444de19f5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lexo-mpuzovic/asset-manifest/zipball/dfb27ec2697861afdd298f330d00cb6990a533ea",
-                "reference": "dfb27ec2697861afdd298f330d00cb6990a533ea",
+                "url": "https://api.github.com/repos/lexo-mpuzovic/asset-manifest/zipball/0164d5e2f0cfc6288a01e9d196741d444de19f5b",
+                "reference": "0164d5e2f0cfc6288a01e9d196741d444de19f5b",
                 "shasum": ""
             },
             "require": {
@@ -39,11 +39,11 @@
                     "email": "tronyx85@gmail.com"
                 }
             ],
-            "description": "Asset Manifest handler",
+            "description": "Asset Manifest handler for Asset Loader for Laravel Mix",
             "support": {
-                "source": "https://github.com/lexo-mpuzovic/asset-manifest/tree/v1.1.0"
+                "source": "https://github.com/lexo-mpuzovic/asset-manifest/tree/v1.1.1"
             },
-            "time": "2021-08-29T15:10:07+00:00"
+            "time": "2023-01-24T13:15:47+00:00"
         }
     ],
     "packages-dev": [],
@@ -56,5 +56,5 @@
         "php": ">=7.2.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
