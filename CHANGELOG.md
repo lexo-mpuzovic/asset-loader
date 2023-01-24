@@ -1,3 +1,11 @@
+## [2.1.3](https://github.com/lexo-mpuzovic/asset-loader/compare/v2.1.2...v2.1.3) (2023-01-24)
+
+
+### Bug Fixes
+
+* **core:** Update Composer and NPM dependencies ([f95caf8](https://github.com/lexo-mpuzovic/asset-loader/commit/f95caf8a04c4c17010c1ef67619f9bc5c567b8f3))
+* **core:** Update NPM ([00ad906](https://github.com/lexo-mpuzovic/asset-loader/commit/00ad90668557b06a9426f8c36f7ecb31f58eacd9))
+
 ## [2.1.2](https://github.com/lexo-mpuzovic/asset-loader/compare/v2.1.1...v2.1.2) (2022-06-17)
 
 
